@@ -1,127 +1,197 @@
-# 🎓 Sistema Escolar v2.0 - Completo
 
-## Funcionalidades Implementadas ✅
+# 🎓 Sistema Escolar – Documentação Completa
 
-Este sistema oferece uma solução completa para gerenciamento acadêmico com:
 
-### 📊 1. Cálculo Automático de Médias
-- Média aritmética por disciplina
-- Média geral do aluno
-- Status de aprovação automático (Aprovado/Recuperação/Reprovado)
+## 1. README 
 
-### 📚 2. Histórico Acadêmico Completo
-- Relatório profissional formatado
-- Estatísticas de desempenho
-- Resumo consolidado
+🎓 Sistema Escolar – README
 
-### 💾 3. Persistência em Banco de Dados (CSV)
-- Salvamento automático ao sair
-- Carregamento automático ao iniciar
-- Salvamento manual sob demanda
+Funcionalidades Implementadas ✅
+
+Cálculo automático de médias: média por disciplina, média geral e status de aprovação.
+
+Histórico acadêmico completo: notas, avaliações e desempenho consolidado.
+
+Persistência: carregamento e salvamento automático em arquivos CSV.
+
+Relatórios: informações organizadas para professores, alunos e coordenação.
+
+Fluxo completo: coordenador cria disciplinas/turmas, professor lança notas, aluno consulta.
 
 ---
 
-## 🚀 Início Rápido
+🚀 Início Rápido
 
-```bash
 # Compilar
-make clean && make
+g++ -std=c++17 *.cpp -o sistema
 
 # Executar
+./sistema
+
+---
+
+📦 Classes e Métodos
+
+A seguir estão os métodos presentes no código, explicados de forma extremamente breve.
+
+---
+
+🧑‍🎓 Aluno
+autenticar() — entra no sistema como aluno.
+sair() — encerra a sessão do aluno.
+verNotas(SistemaEscolar*) — exibe as notas do aluno.
+verHistoricoCompleto(SistemaEscolar*) — mostra o histórico completo.
+calcularMediaGeral(SistemaEscolar*) — retorna a média geral do aluno.
+
+---
+
+📝 Avaliacao
+setNota(int idAluno, float nota) — registra a nota de um aluno.
+getNota(int idAluno) const — consulta a nota de um aluno.
+
+---
+
+👨‍🏫 Professor
+autenticar() — entra como professor.
+sair() — encerra sessão do professor.
+lançarNota(int idAluno, int idAvaliacao, float nota, SistemaEscolar*) — lança nota.
+verTurmas(SistemaEscolar*) — lista turmas.
+criarAvaliacao(Turma*, string tipo, float peso) — cria uma avaliação.
+
+---
+
+🧑‍💼 Coordenador
+autenticar() — entra como coordenador.
+sair() — encerra a sessão.
+cadastrarProfessor(Professor*, SistemaEscolar*) — registra professor.
+cadastrarDisciplina(Disciplina*, SistemaEscolar*) — registra disciplina.
+cadastrarTurma(Turma*, SistemaEscolar*) — cria turma.
+verRelatorios(SistemaEscolar*) — acessa relatórios administrativos.
+
+---
+
+📚 Disciplina
+setNome(string) — define o nome.
+setCodigo(int) — define o código.
+getters — retornam nome e código.
+
+---
+
+🏫 Turma
+designarProf(Professor*) — atribui professor.
+adicionarAluno(Aluno*) — matricula aluno.
+adicionarAvaliacao(Avaliacao*) — adiciona avaliação.
+alunoEstaNaTurma(int) const — verifica pertencimento.
+calcularMediaAluno(int) const — média do aluno.
+obterStatusAprovacao(int) const — aprovado/reprovado/recuperação.
+
+---
+
+🏢 SistemaEscolar
+cadastrarAluno(Aluno*)
+cadastrarProfessor(Professor*)
+cadastrarCoordenador(Coordenador*)
+cadastrarDisciplina(Disciplina*)
+cadastrarTurma(Turma*)
+buscarAluno(int)
+buscarProfessor(int)
+buscarCoordenador(int)
+buscarDisciplina(int)
+
+---
+
+✨ Características
+Código organizado e modular.
+Fluxos separados para aluno, professor e coordenação.
+Estrutura clara de classes e responsabilidades.
+Uso simples via terminal.
+Fácil expansão para novas funcionalidades.
+
+---
+
+## 2. Visão Geral do Projeto
+
+O **Sistema Escolar** é uma aplicação desenvolvida em C++ para simular o gerenciamento básico de uma instituição de ensino.
+
+Inclui:
+- registro de alunos, professores e disciplinas
+- criação de turmas e avaliações
+- lançamento de notas
+- cálculo de médias e status de aprovação
+- relatórios administrativos
+- persistência em arquivos CSV
+
+---
+
+## 3. Arquitetura do Sistema
+
+Estrutura baseada em POO:
+
+### Usuários
+- Aluno
+- Professor
+- Coordenador
+
+### Entidades Acadêmicas
+- Disciplina
+- Turma
+- Avaliação
+
+### Gerenciador Global
+SistemaEscolar (atua como um banco de dados em memória)
+
+---
+
+## 4. Estrutura de Pastas
+
+/include  
+/src  
+main.cpp  
+Makefile  
+/data (arquivos CSV)
+
+---
+
+## 5. Compilação e Execução (versão melhorada)
+
+Compilar:
+```
+make
+```
+
+Executar:
+```
 ./app
+```
 
-# Testar funcionalidades
-./teste_funcionalidades.sh
+Limpar:
+```
+make clean
 ```
 
 ---
 
-## 📁 Estrutura do Projeto
+## 6. Fluxos Operacionais
 
-```
-sistema_escolar-Classes_Prontas/
-├── include/              # Headers (.hpp)
-├── src/                  # Implementações (.cpp)
-├── data/                 # Banco de dados CSV
-├── main.cpp             # Programa principal
-├── Makefile             # Build system
-└── teste_funcionalidades.sh
-```
+### Coordenador
+cria turmas, gerencia professores, disciplinas, gera relatórios.
 
----
+### Professor
+visualiza turmas, cria avaliações, lança notas.
 
-## 📋 Critérios de Aprovação
-
-| Média | Status |
-|-------|--------|
-| ≥ 7.0 | ✅ Aprovado |
-| 5.0 - 6.9 | ⚠️ Recuperação |
-| < 5.0 | ❌ Reprovado |
+### Aluno
+consulta notas, histórico e situação acadêmica.
 
 ---
 
-## 🎯 Fluxo de Uso Básico
+## 7. Funcionalidades em Destaque
 
-1. **Como Coordenador**: Criar disciplinas e turmas
-2. **Como Professor**: Criar avaliações e lançar notas
-3. **Como Aluno**: Ver boletim e histórico completo
-4. **Opção 9**: Salvar dados manualmente
-5. **Opção 0**: Sair (salvamento automático)
-
----
-
-## 📖 Documentação Completa
-
-Consulte a pasta de outputs para documentação detalhada:
-
-- **INDICE.md** - Índice de toda documentação
-- **Resumo_Executivo.md** - Visão geral do projeto
-- **Novas_Funcionalidades.md** - Documentação técnica
-- **Guia_Rapido_Uso.md** - Tutorial prático
-- **Exemplos_Praticos.md** - Casos de uso reais
+- média ponderada  
+- média geral  
+- histórico completo  
+- aprovação automática  
+- persistência em CSV  
+- menus simples no terminal  
 
 ---
 
-## 💡 Exemplo Rápido
-
-```
-./app
-
-# Coordenador (ID 1) → Criar disciplina → Abrir turma → Matricular aluno
-# Professor (ID 10) → Criar avaliações → Lançar notas
-# Aluno (ID 100) → Ver Histórico Completo (Opção 2)
-
-Resultado: Veja médias calculadas e status de aprovação!
-```
-
----
-
-## ✨ Características
-
-- ✅ Zero memory leaks
-- ✅ Validações completas
-- ✅ Código limpo e organizado
-- ✅ Compilação sem warnings
-- ✅ Persistência confiável
-- ✅ Interface profissional
-
----
-
-## 🏆 Qualidade
-
-**Nota**: 9.5/10
-**Status**: Pronto para produção
-**Testes**: Completos e validados
-
----
-
-## 📞 Suporte
-
-Para dúvidas:
-1. Leia **Guia_Rapido_Uso.md**
-2. Veja **Exemplos_Praticos.md**
-3. Consulte **Novas_Funcionalidades.md**
-
----
-
-**Sistema Escolar v2.0 - Profissional e Funcional! 🎓**
